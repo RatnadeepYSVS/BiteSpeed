@@ -7,7 +7,7 @@ export const create = async (req,res)=>{
             "msg":"Woa!! You might wanna check your request!!"
         })
     }
-    const { data,error } = await supabase.from("Contact").select("id,email,phoneNumber,linkPrecedence,linkedId").or([`email.eq.${email},phoneNumber.eq.${Number.toString(phoneNumber)}`])
+    const { data,error } = await supabase.from("Contact").select("id,email,phoneNumber,linkPrecedence,linkedId").or([`email.eq.${email},phoneNumber.eq.${phoneNumber.toString()}`])
     if(error){
         return res.status(500).json({
             "error":error
@@ -24,9 +24,10 @@ export const create = async (req,res)=>{
             "msg":"data pushed"
         })
     }
+    console.log(data)
     let primData = data.filter(i=>i.linkPrecedence==="primary")
     if(primData.length!=0){
-        let dataBody = { linkedId:primData[0].id,linkPrecedence:"secondary",phoneNumber:Number.toString(phoneNumber) }
+        let dataBody = { linkedId:primData[0].id,linkPrecedence:"secondary",phoneNumber:phoneNumber.toString() }
         let resp = await supabase.from("Contact").insert([{...dataBody,...body}])
         if(resp.error){
             return res.status(500).json({
