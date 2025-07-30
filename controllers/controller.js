@@ -26,7 +26,7 @@ export const create = async (req,res)=>{
     }
     let primData = data.filter(i=>i.linkPrecedence==="primary")
     if(primData.length!=0){
-        let dataBody = { linkedId:primData[0].id,linkPrecedence:"secondary" }
+        let dataBody = { linkedId:primData[0].id,linkPrecedence:"secondary",phoneNumber:Number.toString(phoneNumber) }
         let resp = await supabase.from("Contact").insert([{...dataBody,...body}])
         if(resp.error){
             return res.status(500).json({

@@ -8,7 +8,9 @@ Teck Stack Used:-
 2. Express - for backend API's
 
 ## Prerequisites if running the code in local system  
- Node.Js installed in the system(However the API is Hosted)
+ Node.Js installed in the system(However the API is Hosted)  
+ API_BASE_URL= https://bitespeed-rigw.onrender.com
+ API_ENDPOINT=  https://bitespeed-rigw.onrender.com/identify
 # Installation
 1. Clone the repo 
 ```bash
