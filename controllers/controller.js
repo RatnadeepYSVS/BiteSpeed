@@ -7,7 +7,7 @@ export const create = async (req,res)=>{
             "msg":"Woa!! You might wanna check your request!!"
         })
     }
-    const { data,error } = await supabase.from("Contact").select("id,email,phoneNumber,linkPrecedence,linkedId").or([`email.eq.${email},phoneNumber.eq.${phoneNumber}`])
+    const { data,error } = await supabase.from("Contact").select("id,email,phoneNumber,linkPrecedence,linkedId").or([`email.eq.${email},phoneNumber.eq.${Number.toString(phoneNumber)}`])
     if(error){
         return res.status(500).json({
             "error":error
